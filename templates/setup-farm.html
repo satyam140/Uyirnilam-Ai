@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Farm profile | Uyirnilam AI</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/farm.css') }}">
+</head>
+<body class="farm-page profile-page">
+	<header class="site-header profile-header">
+		<a class="brand" href="{{ url_for('dashboard') }}" aria-label="Uyirnilam AI dashboard"><span class="brand-mark">U</span><span>UYIRNILAM <small>AI</small></span></a>
+		<nav aria-label="Profile navigation"><a href="{{ url_for('dashboard') }}">Dashboard</a><a class="nav-action" href="{{ url_for('logout') }}">Log out <span aria-hidden="true">↗</span></a></nav>
+	</header>
+	<main class="profile-shell">
+		<section class="profile-intro">
+			<div><p class="eyebrow">Account & farm profile</p><h1>Keep your farm<br><em>in focus.</em></h1><p>These details shape your crop recommendations, weather guidance and farm assistant answers.</p></div>
+			<div class="profile-identity"><span class="profile-avatar">{{ farmer.name[0] | upper }}</span><div><strong>{{ farmer.name }}</strong><span>{{ farmer.phone }}</span><small>Profile owner</small></div></div>
+		</section>
+		<div class="profile-layout">
+			<aside class="profile-sidebar"><div class="completion-card"><span class="sidebar-label">Profile status</span><strong>Farm profile active</strong><p>Your details are ready to personalize the dashboard.</p><div class="completion-bar"><span></span></div><small>Core details saved</small></div><div class="sidebar-links"><a href="{{ url_for('dashboard') }}"><span>←</span> Back to dashboard</a><a href="{{ url_for('recommendation') }}"><span>✦</span> View crop suggestions</a></div></aside>
+			<form class="farm-form" method="post">
+				<div class="form-header"><div><span class="form-kicker">Farm details</span><h2>Tell us about your land</h2><p>Keep this information current for more relevant decisions.</p></div><span class="required-note">* Required</span></div>
+				<fieldset><legend>Farm identity</legend><div class="form-group"><label for="farm_name">Farm name <span>*</span></label><input id="farm_name" name="farm_name" value="{{ farm.farm_name }}" required></div></fieldset>
+				<fieldset><legend>Where you farm</legend><div class="form-row"><div class="form-group"><label for="state">State</label><input id="state" name="state" value="{{ farm.state }}" placeholder="Maharashtra"></div><div class="form-group"><label for="district">District</label><input id="district" name="district" value="{{ farm.district }}" placeholder="Pune"></div></div><div class="form-group"><label for="location">Village or location <span>*</span></label><input id="location" name="location" value="{{ farm.location }}" required placeholder="Pune"></div></fieldset>
+				<fieldset><legend>What is growing</legend><div class="form-row"><div class="form-group"><label for="area">Land area <span>*</span></label><input id="area" name="area" value="{{ farm.area }}" placeholder="2.5 acres" required></div><div class="form-group"><label for="crop">Current crop</label><select id="crop" name="crop">{% for crop_name in ("Tomato", "Wheat", "Rice", "Cotton", "Chilli", "Potato", "Onion") %}<option {% if farm.crop == crop_name %}selected{% endif %}>{{ crop_name }}</option>{% endfor %}</select></div></div><div class="form-row"><div class="form-group"><label for="soil_type">Soil type</label><select id="soil_type" name="soil_type">{% for soil_name in ("Black Soil", "Alluvial Soil", "Red Soil", "Sandy Soil", "Loamy Soil", "Don't Know") %}<option {% if farm.soil_type == soil_name %}selected{% endif %}>{{ soil_name }}</option>{% endfor %}</select></div><div class="form-group"><label for="irrigation_type">Irrigation <small>(optional)</small></label><input id="irrigation_type" name="irrigation_type" value="{{ farm.irrigation_type }}" placeholder="Drip, canal, borewell"></div></div></fieldset>
+				<fieldset><legend>Your preferences</legend><div class="form-group"><label for="preferred_language">Preferred language</label><select id="preferred_language" name="preferred_language">{% for language in ("Hindi", "English", "Marathi", "Tamil", "Telugu") %}<option {% if farmer.preferred_language == language %}selected{% endif %}>{{ language }}</option>{% endfor %}</select></div></fieldset>
+				<div class="form-actions"><p>Changes update your dashboard recommendations.</p><button class="button button-primary" type="submit">Save farm profile <span aria-hidden="true">↗</span></button></div>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

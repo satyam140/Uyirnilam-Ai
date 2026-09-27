@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather & Irrigation | Uyirnilam AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather.css') }}">
+</head>
+<body class="weather-page">
+    <header class="site-header"><a class="brand" href="/" aria-label="Uyirnilam AI home"><span class="brand-mark" aria-hidden="true">U</span><span>UYIRNILAM <small>AI</small></span></a><nav aria-label="Weather navigation"><a href="/dashboard">Dashboard</a><a class="nav-action" href="/crop-doctor">Crop Doctor</a></nav></header>
+    <main class="weather-shell">
+        <section class="weather-intro"><div><p class="eyebrow">Weather & irrigation</p><h1>What does the<br><em>sky mean for your field?</em></h1><p>Weather numbers are useful only when they help you decide what to do next.</p></div><div class="location-note"><span class="label">Your farm</span><strong>{{ weather.location }}</strong><span>Demo weather data · updated today</span></div></section>
+        <section class="weather-overview"><div class="temperature"><span class="label">Right now</span><strong>{{ weather.temperature }}°</strong><span>{{ weather.forecast[0].summary }}</span></div><div><span class="label">Humidity</span><strong>{{ weather.humidity }}%</strong></div><div><span class="label">Rain chance</span><strong>{{ weather.rain_probability }}%</strong></div><div><span class="label">Wind</span><strong>{{ weather.wind_kmh }} km/h</strong></div></section>
+        <section class="decision-card"><div><p class="eyebrow">Farm decision</p><h2>{{ weather.irrigation.status }}</h2><p>{{ weather.irrigation.reason }}</p></div><span class="decision-mark" aria-hidden="true">↓</span></section>
+        <section class="forecast-section"><p class="eyebrow">Look ahead</p><h2>Three-day forecast</h2><div class="forecast-grid">{% for day in weather.forecast %}<article><span class="forecast-day">{{ day.day }}</span><strong>{{ day.temperature }}°</strong><span>{{ day.summary }}</span><b>{{ day.rain_probability }}% rain</b></article>{% endfor %}</div></section>
+    </main>
+    <footer class="site-footer"><span>UYIRNILAM AI</span><span>Check the soil before making a watering decision.</span></footer>
+</body>
+</html>

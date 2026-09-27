@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crop Doctor | Uyirnilam AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crop-doctor.css') }}">
+</head>
+<body class="crop-doctor-page">
+    <header class="site-header"><a class="brand" href="/" aria-label="Uyirnilam AI home"><span class="brand-mark" aria-hidden="true">U</span><span>UYIRNILAM <small>AI</small></span></a><nav aria-label="Crop Doctor navigation"><a href="/dashboard">Dashboard</a><a href="/weather">Weather</a><a href="/assistant">Assistant</a><a class="nav-action" href="/crop-doctor">Crop Doctor</a></nav></header>
+    <main class="doctor-shell">
+        <section class="doctor-intro"><div><p class="eyebrow">Crop Doctor</p><h1>Something doesn't<br><em>look right?</em></h1><p>Take a clear photo of the affected leaf and we will help you understand what to check next.</p></div><div class="doctor-note"><span aria-hidden="true">✦</span><strong>Good photos help.</strong><span>Use daylight and show the whole leaf where possible.</span></div></section>
+        <section class="doctor-workspace">
+            <form id="crop-analysis-form" class="upload-panel">
+                <label class="upload-zone" for="crop-image"><input id="crop-image" name="image" type="file" accept=".jpg,.jpeg,.png,.webp" required><span class="upload-symbol" aria-hidden="true">＋</span><strong id="upload-title">Drop a crop photo here</strong><span id="upload-help">or tap to choose JPG, PNG or WEBP</span><img id="image-preview" alt="Selected crop preview" hidden></label>
+                <label class="crop-select-label" for="crop-name">What crop is this? <span>(optional)</span></label><select id="crop-name" name="crop"><option>Tomato</option><option>Chilli</option><option>Potato</option><option>Other crop</option></select>
+                <button class="button button-primary analyze-button" type="submit"><span>Analyze crop</span><span aria-hidden="true">↗</span></button>
+                <p class="form-status" id="form-status" role="status"></p>
+            </form>
+            <aside class="doctor-aside"><p class="eyebrow">What happens next</p><ol><li><strong>We look at visible signs</strong><span>Leaf patterns, colour changes and damage.</span></li><li><strong>We explain the likely condition</strong><span>With a confidence level, not a guarantee.</span></li><li><strong>We help you decide what to do</strong><span>Simple actions and safer treatment guidance.</span></li></ol></aside>
+        </section>
+        <section class="diagnosis-result" id="diagnosis-result" aria-live="polite" hidden></section>
+    </main>
+    <footer class="site-footer"><span>UYIRNILAM AI</span><span>AI-assisted decision support, not a replacement for local expertise.</span></footer>
+    <script src="{{ url_for('static', filename='js/crop-doctor.js') }}"></script>
+</body>
+</html>

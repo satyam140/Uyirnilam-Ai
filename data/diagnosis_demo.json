@@ -1,0 +1,38 @@
+{
+  "early blight": {
+    "condition": "Early Blight",
+    "condition_type": "disease",
+    "confidence": 92,
+    "severity": "Medium",
+    "symptoms": ["Brown lesions detected", "Yellowing around affected areas", "Leaf tissue damage visible"],
+    "explanation": "The visible pattern is consistent with early blight. Lesions are present, but widespread tissue damage is not evident.",
+    "immediate_actions": ["Remove badly affected leaves and keep them away from the field.", "Water at the soil line and avoid wetting the leaves.", "Check nearby plants again within two days."]
+  },
+  "powdery mildew": {
+    "condition": "Powdery Mildew",
+    "condition_type": "disease",
+    "confidence": 86,
+    "severity": "Low",
+    "symptoms": ["White powdery patches visible", "Leaf surface looks dusty", "Early yellowing around patches"],
+    "explanation": "The image shows a pattern consistent with powdery mildew. The affected area appears limited, so early action may help slow spread.",
+    "immediate_actions": ["Remove the most affected leaves and dispose of them away from the field.", "Improve airflow around the plant canopy.", "Avoid applying water directly to the leaves." ]
+  },
+  "aphids": {
+    "condition": "Aphids",
+    "condition_type": "pest",
+    "confidence": 79,
+    "severity": "Medium",
+    "symptoms": ["Small clustered insects may be present", "Leaf curling visible", "New growth appears stressed"],
+    "explanation": "The visible curling and clustered pattern is consistent with aphid activity, but a closer field inspection is recommended.",
+    "immediate_actions": ["Inspect the underside of leaves and new shoots.", "Rinse small colonies with a gentle stream of water.", "Check nearby plants and look for ants or natural predators." ]
+  },
+  "healthy": {
+    "condition": "No clear problem detected",
+    "condition_type": "healthy",
+    "confidence": 74,
+    "severity": "Low",
+    "symptoms": ["Leaf colour appears even", "No clear lesion pattern detected", "Leaf structure looks intact"],
+    "explanation": "No clear disease or pest pattern was detected in this image. Keep monitoring because one photo cannot rule out a hidden or early problem.",
+    "immediate_actions": ["Continue checking the crop every few days.", "Watch new growth for colour changes or curling.", "Take another clear photo if symptoms develop." ]
+  }
+}

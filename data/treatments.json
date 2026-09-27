@@ -1,0 +1,36 @@
+{
+  "early blight": {
+    "organic": {
+      "name": "Neem-based care",
+      "application": "Use a labelled neem product according to its package directions.",
+      "frequency": "Follow the product label and local agricultural advice."
+    },
+    "chemical": {
+      "name": "Registered early blight product",
+      "application": "Choose only a product registered for tomato and early blight.",
+      "frequency": "Follow the product label or ask a local agricultural expert."
+    },
+    "prevention": [
+      "Improve airflow between plants.",
+      "Remove fallen infected leaves.",
+      "Avoid overhead irrigation."
+    ]
+  },
+  "default": {
+    "organic": {
+      "name": "Local organic guidance",
+      "application": "Confirm the crop condition before applying any product.",
+      "frequency": "Follow the product label and local agricultural advice."
+    },
+    "chemical": {
+      "name": "Registered crop product",
+      "application": "Use only a product registered for this crop and confirmed condition.",
+      "frequency": "Follow the product label or ask a local agricultural expert."
+    },
+    "prevention": [
+      "Keep the field clean.",
+      "Check nearby plants regularly.",
+      "Ask a local agricultural expert when symptoms spread."
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Market Intelligence | Uyirnilam AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"><link rel="stylesheet" href="{{ url_for('static', filename='css/market.css') }}">
+</head>
+<body class="market-page">
+    <header class="site-header"><a class="brand" href="/" aria-label="Uyirnilam AI home"><span class="brand-mark" aria-hidden="true">U</span><span>UYIRNILAM <small>AI</small></span></a><nav aria-label="Market navigation"><a href="/dashboard">Dashboard</a><a class="nav-action" href="/crop-doctor">Crop Doctor</a></nav></header>
+    <main class="market-shell">
+        <section class="market-intro"><div><p class="eyebrow">Market intelligence</p><h1>Know the market<br><em>before harvest.</em></h1><p>Track local price movement and use it as one more input in your farm decision.</p></div><form class="market-selector" method="get"><label for="crop">Choose a crop</label><select id="crop" name="crop" onchange="this.form.submit()"><option value="tomato" {% if market.crop|lower == 'tomato' %}selected{% endif %}>Tomato</option><option value="chilli" {% if market.crop|lower == 'chilli' %}selected{% endif %}>Chilli</option></select></form></section>
+        <section class="price-hero"><div><span class="label">{{ market.market }}</span><h2>{{ market.crop }}</h2><div class="price">₹{{ "{:,}".format(market.current_price) }} <small>/ {{ market.unit }}</small></div></div><div class="price-change"><strong>{{ '+' if market.change_percent >= 0 else '' }}{{ market.change_percent }}%</strong><span>since yesterday</span></div></section>
+        <section class="chart-panel"><div class="panel-heading"><div><p class="eyebrow">Last seven days</p><h2>Price movement</h2></div><span class="trend-note">Prices are moving {{ market.direction }}</span></div><canvas id="market-chart" aria-label="Seven day market price chart"></canvas></section>
+        <section class="harvest-insight"><div><p class="eyebrow">Harvest insight</p><h2>What this could mean</h2></div><p>{{ market.harvest_insight }}</p></section>
+    </main>
+    <footer class="site-footer"><span>UYIRNILAM AI</span><span>Market information is indicative. Confirm with local buyers before selling.</span></footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script><script>new Chart(document.getElementById('market-chart'), {type:'line', data:{labels:{{ market.history | map(attribute='date') | list | tojson }}, datasets:[{data:{{ market.history | map(attribute='price') | list | tojson }}, borderColor:'#3f7d3a', backgroundColor:'rgba(143,175,114,.2)', fill:true, tension:.35, pointRadius:4, pointBackgroundColor:'#183a2a'}]}, options:{responsive:true, plugins:{legend:{display:false}}, scales:{y:{ticks:{callback:(value)=>'₹'+value.toLocaleString('en-IN')}, grid:{color:'rgba(24,58,42,.12)'}}, x:{grid:{display:false}}}}});</script>
+</body>
+</html>
